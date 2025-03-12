@@ -8,7 +8,7 @@ class GameResultRecord(
     private val players: List<Player>,
 ) {
     fun getDealerResult(): Map<GameResult, Int> {
-        val dealerResult: List<GameResult> = players.map { player -> dealer.compareTo(player) }
+        val dealerResult: List<GameResult> = players.map(dealer::compareTo)
         val initResult = GameResult.entries.associateWith { 0 }
         return initResult + dealerResult.groupingBy { it }.eachCount()
     }

@@ -17,7 +17,7 @@ class Casino(
 ) {
     fun run() {
         val deck = Deck(cardsGenerator)
-        val players: List<Player> = inputView.readPlayerNames().map { Player(it) }
+        val players: List<Player> = inputView.readPlayerNames().map(::Player)
         val dealer: Dealer = Dealer()
         initialCardsDistribute(players + dealer, deck)
         outputParticipantCardsInfo(dealer, players)
@@ -42,7 +42,7 @@ class Casino(
     ) {
         outputView.showDistributeCardMessage(players)
         outputView.showDealerCardsInfo(dealer)
-        players.forEach { outputView.showPlayerCardsInfo(it) }
+        players.forEach(outputView::showPlayerCardsInfo)
         outputView.newLine()
     }
 
