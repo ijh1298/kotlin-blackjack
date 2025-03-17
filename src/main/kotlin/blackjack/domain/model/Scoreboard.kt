@@ -9,7 +9,11 @@ class Scoreboard(
 ) {
     fun getDealerResult(): Map<GameResult, Int> {
         val dealerResult: List<GameResult> = players.map(dealer::compareTo)
-        val initResult: Map<GameResult, Int> = GameResult.entries.associateWith { 0 }
+        val initResult: Map<GameResult, Int> = GameResult.entries.associateWith { INIT_DEFAULT_RESULT }
         return initResult + dealerResult.groupingBy { it }.eachCount()
+    }
+
+    companion object {
+        private const val INIT_DEFAULT_RESULT = 0
     }
 }

@@ -11,7 +11,7 @@ value class BetAmount(
     private val value: Double,
 ) {
     init {
-        require(value >= 0) { ERROR_SHOULD_BE_MORE_THAN_ZERO }
+        require(value >= MINIMUM_BET_AMOUNT) { ERROR_SHOULD_BE_MORE_THAN_ZERO }
     }
 
     fun toProfit(gameResult: GameResult): Double =
@@ -23,8 +23,9 @@ value class BetAmount(
         }
 
     companion object {
+        private const val MINIMUM_BET_AMOUNT = 0
         private const val BLACKJACK_RATE = 1.5
         private const val DRAW_RATE = 0.0
-        const val ERROR_SHOULD_BE_MORE_THAN_ZERO = "베팅 금액은 0원 이상이어야 합니다."
+        private const val ERROR_SHOULD_BE_MORE_THAN_ZERO = "베팅 금액은 0원 이상이어야 합니다."
     }
 }

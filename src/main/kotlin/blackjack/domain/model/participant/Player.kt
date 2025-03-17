@@ -8,7 +8,7 @@ import blackjack.domain.model.card.Hand
 class Player(
     name: String = DEFAULT_NAME,
     hand: Hand = Hand(),
-    private val betAmount: BetAmount = BetAmount(0.0),
+    private val betAmount: BetAmount = BetAmount(DEFAULT_BET_AMOUNT),
 ) : Participant(name, hand) {
     fun makeProfitRecord(dealer: Dealer): Map<Player, Double> {
         val gameResult: GameResult = compareTo(dealer)
@@ -28,6 +28,7 @@ class Player(
     override fun isDrawable(): Boolean = !hand.isBust()
 
     companion object {
+        private const val DEFAULT_BET_AMOUNT = 0.0
         private const val DEFAULT_NAME = "이름 없음"
     }
 }

@@ -13,7 +13,7 @@ class Hand {
 
     fun isNotBust(): Boolean = !isBust()
 
-    fun isBlackJack(): Boolean = cards.size == 2 && getScore() == BLACK_JACK_NUMBER
+    fun isBlackJack(): Boolean = cards.size == INIT_CARD_SIZE && getScore() == BLACK_JACK_NUMBER
 
     fun isNotBlackJack(): Boolean = !isBlackJack()
 
@@ -31,6 +31,7 @@ class Hand {
     companion object {
         fun List<Card>.deepCopy(): List<Card> = map(Card::copy)
 
+        private const val INIT_CARD_SIZE = 2
         private const val ACE_EXTRA_SCORE = 10
         private const val BLACK_JACK_NUMBER = 21
 

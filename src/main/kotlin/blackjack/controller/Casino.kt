@@ -54,7 +54,7 @@ class Casino(
         deck: Deck,
     ) {
         participants.forEach { participant ->
-            participant.draw(drawSafely(2, deck))
+            participant.draw(drawSafely(INIT_CARD_SIZE, deck))
         }
         outputView.showParticipantFirstCardsInfo(participants)
         outputView.newLine()
@@ -104,7 +104,7 @@ class Casino(
             }
 
             PlayerResponse.HIT -> {
-                player.draw(drawSafely(1, deck))
+                player.draw(drawSafely(DEFAULT_DRAW_SIZE, deck))
                 outputView.showParticipantCardsInfo(player)
             }
         }
@@ -115,7 +115,7 @@ class Casino(
         deck: Deck,
     ) {
         while (dealer.isDrawable()) {
-            dealer.draw(drawSafely(1, deck))
+            dealer.draw(drawSafely(DEFAULT_DRAW_SIZE, deck))
             outputView.showDealerDrawMessage()
         }
         outputView.newLine()
@@ -137,5 +137,10 @@ class Casino(
         val playersProfit: Map<Player, Double> = betRecords.playersProfit()
 
         outputView.showProfitResults(dealerProfit, playersProfit)
+    }
+
+    companion object {
+        private const val INIT_CARD_SIZE = 2
+        private const val DEFAULT_DRAW_SIZE = 1
     }
 }
